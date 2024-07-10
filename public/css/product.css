@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Assistant", sans-serif;
+   
+}
+.nav{
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+ .logo svg{
+    position: relative;
+    
+    left: 7px;
+}
+.options{
+    margin-left: -4px;
+}
+.options ul{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+.options ul li{
+    list-style: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    color: black;
+}
+.options ul li:hover{
+    border-bottom: 2px solid #E72744;
+}
+.search-container{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+.search-box{
+    display: flex;
+    align-items: center;
+}
+.search-box input{
+    height: 17px;
+    width: 216px;
+    border: 2px solid #29303E;
+    border-radius: 3px;
+    background-color: #D9D9D9;
+    padding: 5px;
+}
+.search-box button{
+    border: none;
+    background-color: white;
+}
+.cart{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.left {
+    width: 20%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #29303E;
+    position: fixed; 
+    height: 100%; 
+}
+.inner{
+    background-color: white;
+    border-radius: 5px;
+    width: 220px;
+    height: 100%;
+    z-index: 99999;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.TOP{
+    margin-top: -13px;
+}
+.profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+   
+    gap: 20px;
+    font-size: 17px;
+    color: #29303E;
+    margin-bottom: -20px;
+}
+.wardrobe{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+    font-size: 17px;
+    color: #29303E;
+    margin-bottom: -15px;
+}
+
+.category{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    color: #29303E;
+    font-family: "Roboto", sans-serif;
+}
+
+.types ul{
+    margin-top: 1px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #29303E;
+    margin-left: -44px;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+ .quiz button{
+    margin-bottom: 78px;
+    border: 2px solid #29303E;
+    color: #29303E;
+    padding: 15px 22px;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+.right {
+    width: 75%;
+    margin-left: 23%; /* Pushes the right div to the right to account for the fixed left div */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.right h1{
+    font-family:  "Roboto", sans-serif;
+    color: #29303E;
+}
+
+.listing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 40px;
+}
+
+.product{
+    border: 2px solid #29303E;
+    border-radius: 3px;
+    
+    height: 270px;
+    width: 185px;
+}
+
+.product img{
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+   
+}
+.product svg{
+    position: relative;
+    top: -40px;
+    left: 95px;
+    margin-left: 10px;
+}
+.circle{
+    height: 30px;
+    background-color: #E72744;
+    width: 30px;
+    border-radius: 20px;
+    position: relative;
+    left: 149px;
+    top: -230px;
+
+}
+.circle h4{
+    color: white;
+    font-family: "Roboto", sans-serif;
+    position: inherit;
+    top: 6px;
+    left: 4px;
+    font-size: 15px
+
+}
+.descrip{
+    margin-top: -110px;
+  padding: 5px;
+}
+.descrip h2{
+    font-family: "Roboto", sans-serif;
+    color: #29303E;
+}
+.descrip p{
+    margin-top: -10px;
+    color: rgb(93, 90, 90);
+  }
