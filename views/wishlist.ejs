@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="inner">
+                <input type="text" id="shared-user-email" placeholder="Enter Email-id">
+                <button id="share-button">Share Wishlist</button>
+            </div>
+        </div>
+        <div class="right">
+            <h1>Wishlist</h1>
+            <div class="listing" id="wishlist">
+                <div id="user-id" data-user-id="<%= curruser._id %>"></div>
+                <% items.forEach(item => { %>
+                    <div class="product" data-product-id="<%= item._id %>">
+                        <img src="<%= item.image.url %>" alt="<%= item.name %>">
+                        <div class="descrip">
+                            <h2><%= item.name %></h2>
+                            <p>Price: $<%= item.price %></p>
+                            <p><%= item.description %></p>
+                        </div>
+                        <button class="wishlist-btn">
+                            <svg class="wishlist-icon" width="24" height="24">
+                                <path fill="#ffffff" d="..."></path>
+                            </svg>
+                        </button>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <button class="test-btn">Test POST</button>
+    <script src="/js/script.js"></script>
+</body>
+</html>
