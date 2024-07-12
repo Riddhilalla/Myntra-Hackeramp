@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lookbook Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --c-dark: #29303E;
+            --c-brand: #FD913C;
+            --c-brand-light: #6970dd;
+            --c-brand-rgb: 78, 87, 212;
+            --font-base: "ClashDisplay", sans-serif;
+            --transition: all 0.5s ease;
+        }
+
+
+        body {
+            font-family: var(--font-base);
+            line-height: 1.7;
+            color: var(--c-body);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6 {
+            font-weight: 600;
+            color: var(--c-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--c-brand);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--c-brand-light);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .section-padding {
+            padding-top: 140px;
+            padding-bottom: 140px;
+        }
+
+        .theme-shadow {
+            box-shadow: var(--box-shadow);
+        }
+
+
+        .image-zoom {
+            position: relative;
+
+        }
+
+        .image-zoom-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-zoom-wrapper img {
+            transition: var(--transition);
+        }
+
+        .image-zoom:hover .image-zoom-wrapper img {
+            transform: scale(1.1);
+        }
+
+
+
+        .navbar {
+            box-shadow: var(--box-shadow);
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: var(--c-dark);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--c-brand);
+        }
+
+
+        .section-title {
+            margin-bottom: 60px;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 4px;
+            background-color: var(--c-brand);
+            margin: 16px auto 24px auto;
+        }
+
+        .section-title p {
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+        .iconbox {
+            width: 70px;
+            height: 70px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--c-brand-rgb), 0.1);
+            color: var(--c-brand);
+            font-size: 34px;
+            flex: none;
+        }
+
+        .portfolio-item .iconbox {
+            background-color: var(--c-brand);
+            color: white;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .portfolio-item:hover .iconbox {
+            opacity: 1;
+            top: 50%;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+
+    <section id="portfolio" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
+                    <div class="section-title">
+                        <h3 class="display-4 fw-semibold">Celebrity Inspired Collection</h3>
+                        <div class="line"></div>
+                        <p>Immerse yourself in these specially curated ensembles from our collaborator—available for
+                            purchase on Myntra!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <a href="https://media.morninghoney.com/brand-img/Bnx2VTaRz/0x0/feature-1657737944875.jpg"
+                                data-fancybox="gallery">
+                                <img src="https://media.morninghoney.com/brand-img/Bnx2VTaRz/0x0/feature-1657737944875.jpg"
+                                    alt="">
+                            </a>
+                        </div>
+                        <a href="https://media.morninghoney.com/brand-img/Bnx2VTaRz/0x0/feature-1657737944875.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://www.india-forums.com/tellybuzz/images/uploads/7CF_stylereportcardthumbnail.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://www.india-forums.com/tellybuzz/images/uploads/7CF_stylereportcardthumbnail.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="250">
+                    <div class="portfolio-item image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://assets.vogue.com/photos/668d8fe1424c2ac5ae0a112b/master/w_2560%2Cc_limit/Holding%2520(1).png"
+                                alt="">
+                        </div>
+                        <a href="https://assets.vogue.com/photos/668d8fe1424c2ac5ae0a112b/master/w_2560%2Cc_limit/Holding%2520(1).png"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://media.gq.com/photos/5e331a8999b8de0008f51569/4:3/w_1024%2Cc_limit/big-fits-of-the-day-2020-january-gq.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://media.gq.com/photos/5e331a8999b8de0008f51569/4:3/w_1024%2Cc_limit/big-fits-of-the-day-2020-january-gq.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="350">
+                    <div class="portfolio-item image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://www.hindustantimes.com/ht-img/img/2023/02/08/550x309/photo_2023-02-08_13-48-14_1675844363491_1675844368107_1675844368107.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://www.hindustantimes.com/ht-img/img/2023/02/08/550x309/photo_2023-02-08_13-48-14_1675844363491_1675844368107_1675844368107.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://im.idiva.com/photogallery/2011/Aug/celeb_style_independence_day_looks_you_should_try.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://im.idiva.com/photogallery/2011/Aug/celeb_style_independence_day_looks_you_should_try.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
+                    <div class="section-title">
+                        <h3 class="display-4 fw-semibold">Active Wear</h3>
+                        <div class="line"></div>
+                        <p>Delve into these handpicked styles by our partner and shop them directly on Myntra!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://assets.vogue.com/photos/6549376c5da196418313a6e0/1:1/w_354%2Cc_limit/best%2520tennis%2520dresses.jpeg"
+                                alt="">
+                        </div>
+                        <a href="https://assets.vogue.com/photos/6549376c5da196418313a6e0/1:1/w_354%2Cc_limit/best%2520tennis%2520dresses.jpeg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+
+                </div>
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="250">
+                    <div class="portfolio-item image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://assets.vogue.com/photos/615cfea08b6ad31d46ef29ae/1:1/w_354%2Cc_limit/476_RM_JZarins_Shot_04_0325%25202_f9.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://assets.vogue.com/photos/615cfea08b6ad31d46ef29ae/1:1/w_354%2Cc_limit/476_RM_JZarins_Shot_04_0325%25202_f9.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+
+                </div>
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="350">
+                    <div class="portfolio-item image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://assets.vogue.in/photos/5d820278731c7f0009cb2baf/master/pass/Deepika%20padukone%20-%20instagram%20credit%20.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://assets.vogue.in/photos/5d820278731c7f0009cb2baf/master/pass/Deepika%20padukone%20-%20instagram%20credit%20.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
+                    <div class="section-title">
+                        <h3 class="display-4 fw-semibold">Slay in Office</h3>
+                        <div class="line"></div>
+                        <p>Explore these carefully curated looks by our collaborator—shop exclusively on Myntra!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://images.herzindagi.info/image/2024/Jun/formal-dresses-for-office-wear-women.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://images.herzindagi.info/image/2024/Jun/formal-dresses-for-office-wear-women.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://www.stylerave.com/wp-content/uploads/2019/06/6BE26A54-06A1-428C-8E5B-0DCFEC1A869E-2.jpeg"
+                                alt="">
+                        </div>
+                        <a href="https://www.stylerave.com/wp-content/uploads/2019/06/6BE26A54-06A1-428C-8E5B-0DCFEC1A869E-2.jpeg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="250">
+                    <div class="portfolio-item image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://leadership.ng/wp-content/uploads/2024/06/IMG-20240617-WA00021.jpg" alt="">
+                        </div>
+                        <a href="https://leadership.ng/wp-content/uploads/2024/06/IMG-20240617-WA00021.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3JGfT2QRNKf4v2u4Rh6Iz2zcu6EjGLfV-yg&s"
+                                alt="">
+                        </div>
+                        <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3JGfT2QRNKf4v2u4Rh6Iz2zcu6EjGLfV-yg&s"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-down" data-aos-delay="350">
+                    <div class="portfolio-item image-zoom">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://i0.wp.com/exquisitemag.com/wp-content/uploads/2023/05/off-1.jpg?resize=696%2C392&ssl=1"
+                                alt="">
+                        </div>
+                        <a href="https://i0.wp.com/exquisitemag.com/wp-content/uploads/2023/05/off-1.jpg?resize=696%2C392&ssl=1"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                    <div class="portfolio-item image-zoom mt-4">
+                        <div class="image-zoom-wrapper">
+                            <img src="https://i.ndtvimg.com/i/2017-11/sandeep-aur-pinky-faraar-parineeti-chopra_650x400_81510645096.jpg"
+                                alt="">
+                        </div>
+                        <a href="https://i.ndtvimg.com/i/2017-11/sandeep-aur-pinky-faraar-parineeti-chopra_650x400_81510645096.jpg"
+                            data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+
+        AOS.init({
+
+            offset: 120,
+            delay: 0,
+            duration: 900,
+            easing: 'ease',
+            once: false,
+            mirror: false,
+            anchorPlacement: 'top-bottom',
+        });
+    </script>
+</body>
+
+</html>
