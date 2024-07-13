@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-User Cart</title>
+</head>
+
+<body>
+    <div>
+        <div id="user-id" data-user-id="<%= curruser._id %>"></div>
+        <h1>Multi-User Cart</h1>
+        <button id="create-cart-button">Create Cart</button>
+        <p id="cart-code"></p>
+        <a id="share-link" target="_blank"></a>
+        <input type="text" id="join-cart-code" placeholder="Enter Cart Code">
+        <button id="join-cart-button">Join Cart</button>
+        <select id="joined-users">
+            <option value="">Select User</option>
+        </select>
+        <select id="user-carts">
+            <option value="">Select Cart</option>
+        </select>
+        <ul id="cart-items"></ul>
+
+    </div>
+
+
+    <script>
+        async function getCart() {
+            try {
+                const response = await fetch('/cart');
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch cart');
+                }
+
+                const carts = await response.json();
+                console.log('Fetched carts:', carts);
+
+                const cartItemsContainer = document.getElementById('cart-items');
+                cartItemsContainer.innerHTML = '';
+
+                carts.forEach(cart => {
+                    const cartCodeElement = document.createElement('p');
+                    cartCodeElement.textContent = `Cart Code: ${cart.code}`;
+                    cartItemsContainer.appendChild(cartCodeElement);
+
+                    const itemList = document.createElement('ul');
+                    cart.items.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${item.product.name} - Quantity: ${item.quantity}`;
+                        itemList.appendChild(listItem);
+                    });
+                    cartItemsContainer.appendChild(itemList);
+
+                    const users = cart.sharedWith;
+                    users.forEach(user => {
+                        const userOption = document.createElement('option');
+                        userOption.value = user;
+                        userOption.textContent = user; // Replace with actual user display name
+                        joinedUsersSelect.appendChild(userOption);
+                    });
+                });
+
+            } catch (error) {
+                console.error('Error fetching cart:', error.message);
+            }
+        }
+
+        async function addItem() {
+            try {
+                const userId = 'user-id'; // Replace with actual user ID
+                const productId = document.getElementById('product-id').value;
+                const name = document.getElementById('product-name').value;
+                const photo = document.getElementById('product-photo').value;
+                const quantity = parseInt(document.getElementById('quantity').value, 10);
+
+                const response = await fetch(`/cart/${userId}/add`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ productId, name, photo, quantity })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to add product to cart');
+                }
+
+                await getCart(); // Refresh cart after adding item
+
+            } catch (error) {
+                console.error('Error adding item to cart:', error.message);
+            }
+        }
+
+        async function joinCart() {
+            try {
+                const code = document.getElementById('join-cart-code').value;
+                const userId = document.getElementById('user-id').dataset.userId; // Get user ID from data attribute
+
+                const response = await fetch('/cart/join', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code, userId })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to join cart');
+                }
+
+                await getCart(); // Refresh cart after joining
+            } catch (error) {
+                console.error('Error joining cart:', error.message);
+            }
+        }
+
+        async function createCart() {
+            try {
+                console.log('Creating cart...'); // Debugging line
+                const response = await fetch(`/cart/create`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userId: 'user-id' }) // Replace with actual user ID
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to create cart: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('Cart creation response:', data); // Debugging line
+
+                const cartCode = data.cartCode;
+                console.log('Cart created:', cartCode);
+
+                const cartCodeElement = document.getElementById('cart-code');
+                cartCodeElement.textContent = `Cart Code: ${cartCode}`;
+
+                const shareLinkElement = document.getElementById('share-link');
+                shareLinkElement.textContent = `Shareable Link: ${window.location.origin}/cart/${cartCode}`;
+                shareLinkElement.href = `${window.location.origin}/cart/${cartCode}`;
+
+                await getCart(); // Refresh cart after creation
+
+            } catch (error) {
+                console.error('Error creating cart:', error.message);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Fetch and display user's joined carts
+                const userId = document.getElementById('user-id').dataset.userId;
+                const userCartsSelect = document.getElementById('user-carts');
+
+                const responseUserCarts = await fetch(`/cart/user/${userId}`);
+                if (responseUserCarts.ok) {
+                    const userCarts = await responseUserCarts.json();
+                    userCarts.forEach(cart => {
+                        const option = document.createElement('option');
+                        option.value = cart.code;
+                        option.textContent = `Cart ${cart.code}`;
+                        userCartsSelect.appendChild(option);
+                    });
+                } else {
+                    throw new Error('Failed to fetch user carts');
+                }
+
+                // Handle user cart selection
+                userCartsSelect.addEventListener('change', async () => {
+                    const selectedCartCode = userCartsSelect.value;
+                    if (selectedCartCode) {
+                        // Fetch and display users in selected cart
+                        const responseUsersInCart = await fetch(`/cart/${selectedCartCode}/users`);
+                        if (responseUsersInCart.ok) {
+                            const usersInCart = await responseUsersInCart.json();
+                            const joinedUsersSelect = document.getElementById('joined-users');
+                            joinedUsersSelect.innerHTML = '';
+                            usersInCart.forEach(user => {
+                                const option = document.createElement('option');
+                                option.value = user._id; // Assuming user._id is used for value
+                                option.textContent = user.username; // Adjust as per your User model
+                                joinedUsersSelect.appendChild(option);
+                            });
+                        } else {
+                            throw new Error('Failed to fetch users in cart');
+                        }
+                    }
+                });
+
+                getCart();
+
+                const createCartButton = document.getElementById('create-cart-button');
+                if (createCartButton) {
+                    createCartButton.addEventListener('click', createCart);
+                }
+
+                const joinCartButton = document.getElementById('join-cart-button');
+                if (joinCartButton) {
+                    joinCartButton.addEventListener('click', joinCart);
+                }
+
+                const addItemButton = document.getElementById('add-item-button');
+                if (addItemButton) {
+                    addItemButton.addEventListener('click', addItem);
+                }
+
+
+            } catch (error) {
+                console.error('Error:', error.message);
+            }
+        });
+    </script>
+</body>
+
+</html>

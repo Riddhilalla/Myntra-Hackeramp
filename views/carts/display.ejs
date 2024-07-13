@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Display</title>
+</head>
+<body>
+    <h1>Choose a Cart to Add Product</h1>
+    <ul id="carts-container">
+        <% carts.forEach(cart => { %>
+            <li>
+                <h2>Cart Code: <%= cart.code %></h2>
+                <button class="add-to-cart-btn" data-cart-code="<%= cart.code %>" onclick="displaycart('<%= cart.code %>')">Add to Cart</button>
+
+            </li>
+        <% }) %>
+    </ul>
+
+    <script>
+let cartId = cart.code;
+function displaycart(cartId) {
+    window.location.href = `/cart/details/${cartId}`;
+}
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const productId = getProductIdFromURL(); // Fetch productId from URL
+
+            // Function to extract productId from URL
+            function getProductIdFromURL() {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                return urlParams.get('productId');
+            }
+
+            // Now you can use the productId as needed in your JavaScript logic
+            console.log('Product ID:', productId);
+
+            async function fetchProductDetails(productId) {
+                const response = await fetch(`/products/${productId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch product details');
+                }
+                return response.json();
+            }
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const cartCode = button.getAttribute('data-cart-code');
+
+                    if (!productId) {
+                        console.error('Product ID not found in URL');
+                        return;
+                    }
+
+                    try {
+                        // Fetch product details from the server
+                        const productDetails = await fetchProductDetails(productId);
+                        const { name, image, price } = productDetails;
+
+                        // Add item to cart via POST request
+                        const addToCartResponse = await fetch(`/cart/${cartCode}/add`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                productId,
+                                name,
+                                photo: image.url,
+                                price, // Include the price in the request body
+                                quantity: 1 // Always set quantity to 1
+                            })
+                        });
+
+                        if (!addToCartResponse.ok) {
+                            throw new Error('Failed to add item to cart');
+                        }
+
+                        console.log('Item added to cart successfully');
+                    } catch (error) {
+                        console.error('Error adding item to cart:', error.message);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -72,7 +72,7 @@ router.post("/:userId/share", async (req, res) => {
         if (!wishlist) {
             console.error("Wishlist not found");
             return res.status(404).json({ error: "Wishlist not found" });
-        }
+        }s
 
         // Check if already shared with this email
         if (wishlist.sharedWith.includes(sharedEmail)) {
@@ -91,8 +91,6 @@ router.post("/:userId/share", async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
-
-
 
 
 module.exports = router;

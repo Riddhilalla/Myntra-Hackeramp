@@ -1,0 +1,31 @@
+<!-- carts/details.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Details</title>
+    <!-- Include any necessary CSS files -->
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Cart Details</h1>
+
+    <h2>Cart Code: <%= cart.code %></h2>
+
+    <h3>Items:</h3>
+    <ul>
+        <% cart.items.forEach(item => { %>
+            <li>
+                <%= item.product.name %> - <%= item.quantity %> pcs
+            </li>
+        <% }); %>
+    </ul>
+
+    <p>Shared with: <%= cart.sharedWith.map(user => user.username).join(', ') %></p>
+    <p>Owner: <%= cart.owner ? cart.owner.username : 'Unknown' %></p>
+
+</body>
+</html>
