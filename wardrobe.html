@@ -1,0 +1,243 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Wardrobe</title>
+  <style>
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  width: 70%;
+  margin-left: 30%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #FD913C;
+}
+
+.wardrobe-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.wardrobe-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+ 
+
+        .listing {
+            position: relative;
+            width: 240px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            overflow: hidden;
+            /* Ensure content doesn't overflow */
+        }
+
+        .listing img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Maintain aspect ratio and cover container */
+            border-radius: 18px;
+            /* Ensure image corners match swiper-slide */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .listing h4 {
+            color: rgb(255, 255, 255);
+    position: relative;
+    font-size: 20px;
+    left: -9px;
+    top: 0px;
+
+        }
+        .header{
+            position: relative;
+    top: -158px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+        }
+        .photoicons {
+            position: absolute;
+            left: 8px;
+            bottom: 4px;
+            display: flex;
+            justify-content: space-around;
+           
+            align-content: center;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 120px;
+
+        }
+
+        @media only screen and (max-width: 550px) {
+            .container{
+                margin-left: 10%;
+            }
+        }
+
+  </style>
+</head>
+
+<body>
+
+   
+  <div class="container">
+    <h1>My Digital Wardrobe</h1>
+    <div id="wardrobeItems" class="wardrobe-items">
+        <div class="listing">
+
+            <img src="https://images.unsplash.com/photo-1611731540346-c4a95a764dd7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhc2hpb24lMjBtb2RlbHN8ZW58MHx8MHx8fDA%3D"
+                alt="image1">
+                <div class="header">
+            <h4>Name_of_creator</h4>
+            <svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                
+                
+        </div>
+            <div class="photoicons">
+                <div class="leftside">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.7065 4.65984C19.5779 2.74077 16.8473 3.51413 15.207 4.74601C14.5343 5.25112 14.198 5.50367 14.0002 5.50367C13.8023 5.50367 13.4661 5.25112 12.7934 4.74601C11.1531 3.51413 8.42243 2.74077 5.29384 4.65984C1.18791 7.17843 0.258836 15.4874 9.72961 22.4973C11.5335 23.8324 12.4354 24.5 14.0002 24.5C15.5649 24.5 16.4668 23.8324 18.2707 22.4973C27.7415 15.4874 26.8124 7.17843 22.7065 4.65984Z" fill="#E72744" stroke="#E72744" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                        
+
+                    <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                            stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                            stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <svg width="30" height="30" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="31" cy="31" r="29.25" stroke="white" stroke-width="3.5"/>
+                    <path d="M43.8132 30.5865C42.1253 25.5933 40.017 23.9731 33.776 23.9731H27.5282C21.0721 23.9731 18.5747 25.6066 16.7893 31.8055C15.1812 37.389 14.3771 40.1806 15.2178 42.3456C15.7326 43.6715 16.6467 44.8212 17.8442 45.649C20.2368 47.3032 26.4203 48.0854 32.2399 47.9263" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M23.1465 24.7999V22.0944C23.1465 18.11 26.4775 14.8799 30.5865 14.8799C34.6955 14.8799 38.0265 18.11 38.0265 22.0944V24.7999" stroke="white" stroke-width="3.5"/>
+                    <path d="M34.7197 41.3331H47.9464M41.3331 47.9464V34.7197" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M28.9331 29.7598H32.2398" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                    </svg>
+                    
+                    
+            </div>
+
+    </div>
+    <div class="listing">
+
+        <img src="https://images.unsplash.com/photo-1633624939902-55db526208b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbiUyMG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D"
+        alt="image1">
+            
+            <div class="header">
+        <h4>Name_of_creator</h4>
+        <svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            
+            
+    </div>
+        <div class="photoicons">
+            <div class="leftside">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.7065 4.65984C19.5779 2.74077 16.8473 3.51413 15.207 4.74601C14.5343 5.25112 14.198 5.50367 14.0002 5.50367C13.8023 5.50367 13.4661 5.25112 12.7934 4.74601C11.1531 3.51413 8.42243 2.74077 5.29384 4.65984C1.18791 7.17843 0.258836 15.4874 9.72961 22.4973C11.5335 23.8324 12.4354 24.5 14.0002 24.5C15.5649 24.5 16.4668 23.8324 18.2707 22.4973C27.7415 15.4874 26.8124 7.17843 22.7065 4.65984Z" fill="#E72744" stroke="#E72744" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    
+
+                <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                        stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                        stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <svg width="30" height="30" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="31" cy="31" r="29.25" stroke="white" stroke-width="3.5"/>
+                <path d="M43.8132 30.5865C42.1253 25.5933 40.017 23.9731 33.776 23.9731H27.5282C21.0721 23.9731 18.5747 25.6066 16.7893 31.8055C15.1812 37.389 14.3771 40.1806 15.2178 42.3456C15.7326 43.6715 16.6467 44.8212 17.8442 45.649C20.2368 47.3032 26.4203 48.0854 32.2399 47.9263" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M23.1465 24.7999V22.0944C23.1465 18.11 26.4775 14.8799 30.5865 14.8799C34.6955 14.8799 38.0265 18.11 38.0265 22.0944V24.7999" stroke="white" stroke-width="3.5"/>
+                <path d="M34.7197 41.3331H47.9464M41.3331 47.9464V34.7197" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M28.9331 29.7598H32.2398" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                </svg>
+                
+                
+        </div>
+
+</div>
+  </div>
+<script src="common.js"></script>
+  <script>
+    async function fetchWardrobeItems(userId) {
+      try {
+        const response = await fetch(`/wardrobe/user/${userId}`);
+        const wardrobeItems = await response.json();
+        displayWardrobeItems(wardrobeItems);
+      } catch (error) {
+        console.error('Error fetching wardrobe items:', error);
+      }
+    }
+
+    function displayWardrobeItems(wardrobeItems) {
+      const wardrobeItemsContainer = document.getElementById('wardrobeItems');
+      wardrobeItemsContainer.innerHTML = '';
+
+      wardrobeItems.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('wardrobe-item');
+        itemElement.innerHTML = `<img src="${item.imageUrl}" alt="Wardrobe Item">`;
+        wardrobeItemsContainer.appendChild(itemElement);
+      });
+    }
+
+    
+    const userId = 'user123'; 
+    fetchWardrobeItems(userId);
+  </script>
+</body>
+</html>

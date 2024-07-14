@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+   
+    <!-- Demo styles -->
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #fff;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .siders{
+            width: 70%;
+            margin-left: 30%;
+        }
+        .tinder {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .swiper {
+            width: 240px;
+            height: 380px;
+        }
+
+        .swiper-slide {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            overflow: hidden;
+            /* Ensure content doesn't overflow */
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Maintain aspect ratio and cover container */
+            border-radius: 18px;
+            /* Ensure image corners match swiper-slide */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .swiper-slide h4 {
+            color: rgb(255, 255, 255);
+            position: relative;
+            left: -16px;
+            top: -158px;
+
+        }
+
+        .photoicons {
+            position: absolute;
+            left: 8px;
+            bottom: 4px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 120px;
+
+        }
+
+        #likebutton {
+            cursor: pointer;
+        }
+
+        .liked {
+            fill: #E72744;
+        }
+        .rightsidebar{
+            background-color: #29303E;
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    right: 0;
+    align-content: space-around;
+    justify-content: center;
+    gap: 56px;
+    align-items: center;
+    flex-direction: column;
+        }
+
+        .uppercard{
+            background-color: white;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    padding: 14px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+        }
+
+        .lowercard{
+            background-color: white;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    padding: 14px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+        }
+        .illustration{
+            height: 150px;
+            margin-bottom: 19px;
+        }
+
+        .illustration img{
+            height: 150px;
+    width: auto;
+    margin-top: 14px;
+        }
+        .text{
+            display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+        }
+        
+
+        .text h3{
+            color: #29303E;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+font-size: 20px;
+margin-bottom: -4px;
+        }
+
+        .text p{
+            color: #29303E;
+    font-family: "Assistant", sans-serif;
+    font-weight: 600;
+font-size: 16px;
+        }
+
+        @media only screen and (max-width: 1150px) {
+            
+            .siders{
+                width: 0;
+            }
+            
+            .rightsidebar{
+                background-color: #29303E;
+        width: 100vw;
+        height: 100%;
+        position: relative;
+        bottom: -100%;
+        display: flex;
+        left: -50vw;
+        align-content: space-around;
+        justify-content: center;
+        gap: 56px;
+        align-items: center;
+        flex-direction: column;
+            }
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+ 
+   <div class="container">
+   <!--sidebar-->
+   <div class="siders">
+    <!-- Swiper -->
+    <div class="tinder">
+        <div class="wardrobelike" onclick="addToWardrobe()">
+            <svg width="40" height="40" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="28" cy="28" r="26.5" stroke="#E72744" stroke-width="3" />
+                <path
+                    d="M28 42.5C25.9882 42.5 24.8286 41.6417 22.5093 39.9251C10.3326 30.9124 11.5271 20.2294 16.8062 16.9912C20.8286 14.5238 24.3394 15.5182 26.4484 17.102C27.3133 17.7514 27.7456 18.0761 28 18.0761C28.2544 18.0761 28.6867 17.7514 29.5516 17.102C31.6606 15.5182 35.1713 14.5238 39.1939 16.9912C41.7718 18.5726 43.3757 21.9293 42.9241 26"
+                    stroke="#E72744" stroke-width="3" stroke-linecap="round" />
+                <path d="M31 38C31 38 32.5 38 34 41C34 41 38.7648 33.5 43 32" stroke="#E72744" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </div>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+
+                    <img src="https://images.unsplash.com/photo-1611731540346-c4a95a764dd7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhc2hpb24lMjBtb2RlbHN8ZW58MHx8MHx8fDA%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+
+                    <img src="https://images.unsplash.com/photo-1689844921352-4fd1ef1c268e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1633624939902-55db526208b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbiUyMG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+
+                    <img src="https://images.unsplash.com/photo-1676576625429-e00537557449?q=80&w=1430&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+
+                    <img src="https://images.unsplash.com/photo-1706447734556-b6fb1d31dd46?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+
+                    <img src="https://images.unsplash.com/photo-1667477159482-db346abdcd56?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1682186133409-4affc0dcc05e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+
+                    <img src="https://images.unsplash.com/photo-1670780014146-d09edc37f288?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1688244564160-cb1cae0d3dbc?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1708412414919-b4933fe318fb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fHw%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1698668768739-7dfa1a00a8f0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1678570879450-79c108e3b5f7?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="image1">
+                    <h4>Name_of_creator</h4>
+                    <div class="photoicons">
+                        <div class="left">
+                            <svg id="likebutton" width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="toggleLike()">
+                                <path id="likepath"
+                                    d="M38.9252 7.9883C33.5618 4.69846 28.8808 6.02422 26.0688 8.13602C24.9156 9.00192 24.3392 9.43486 24 9.43486C23.6608 9.43486 23.0844 9.00192 21.9312 8.13602C19.1192 6.02422 14.4382 4.69846 9.07488 7.9883C2.03614 12.3059 0.443439 26.5498 16.6791 38.5668C19.7714 40.8556 21.3176 42 24 42C26.6824 42 28.2286 40.8556 31.321 38.5668C47.5566 26.5498 45.9638 12.3059 38.9252 7.9883Z"
+                                    fill="none" stroke="#E72744" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+
+                            <svg id="share" width="30" height="30" viewBox="0 0 47 47" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M39.9357 15.7287L36.5145 12.7577C34.0497 10.6171 33.0835 9.4656 31.7487 9.87268C30.0843 10.3803 30.6323 13.5831 30.6323 14.6644C28.0445 14.6644 25.3542 14.4654 22.8034 14.8801C14.383 16.2491 11.75 22.24 11.75 28.6944C14.1332 27.2335 16.5141 25.6044 19.3785 24.9274C22.954 24.0822 26.9473 24.4854 30.6323 24.4854C30.6323 25.5668 30.0843 28.7696 31.7487 29.2772C33.2611 29.7384 34.0497 28.5327 36.5145 26.3922L39.9357 23.4212C42.0341 21.599 43.0833 20.6878 43.0833 19.575C43.0833 18.4621 42.0341 17.551 39.9357 15.7287Z"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M20.6952 5.875C13.1356 5.88859 9.17696 6.07381 6.64712 8.59851C3.91699 11.3231 3.91699 15.7083 3.91699 24.4786C3.91699 33.249 3.91699 37.6341 6.6471 40.3587C9.37724 43.0833 13.7713 43.0833 22.5593 43.0833C31.3476 43.0833 35.7417 43.0833 38.4718 40.3587C40.3725 38.4617 40.9499 35.7598 41.1253 31.3333"
+                                    stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <svg id="follow" width="30" height="30" viewBox="0 0 48 48" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 24C4 35.0456 12.9543 44 24 44C35.0456 44 44 35.0456 44 24C44 12.9543 35.0456 4 24 4"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" />
+                            <path
+                                d="M9.29712 10.1575C9.5738 9.86422 9.85896 9.579 10.1522 9.30222M15.8947 5.45878C16.2577 5.2956 16.6263 5.14256 17 5M5 17C5.1439 16.6225 5.2985 16.2504 5.46344 15.8838"
+                                stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 16V32M32 24H16" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nextphoto" onclick="nextSlide()">
+            <svg width="40" height="40" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="28" cy="28" r="26.5" transform="rotate(180 28 28)" stroke="#E72744" stroke-width="3" />
+                <path d="M24.125 41.25C24.125 41.25 36.875 31.8598 36.875 28.5C36.875 25.1399 24.125 15.75 24.125 15.75"
+                    stroke="#E72744" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+        </div>
+    </div>
+    <div class="rightsidebar">
+        <div class="uppercard">
+           <div class="illustration">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUmLFANByp7SJrqZaeXOkdPF269K9hSjPfitMX-bZpIoHfE0mM" alt="">
+           </div>
+           <div class="text">
+            <h3>Style Squads</h3>
+            <p>
+                Dive into vibrant trend discussions, share your style insights, and exchange views on the latest fashion trends!</p>
+           </div>
+        </div>
+
+        <div class="lowercard">
+            <div class="illustration">
+                <img src="https://www.adpushup.com/blog/wp-content/uploads/2024/03/undraw_online_connection_6778-1-770x515.png" alt="">
+            </div>
+            <div class="text">
+             <h3>Explore LookBooks!</h3>
+             <p>
+                Discover curated styles and fashion collections crafted by creators. Unleash your style inspiration and explore the latest trends!</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      loop: true, // Enable loop mode
+    });
+
+    // Function to add image to wardrobe
+    function addToWardrobe() {
+      const activeSlideIndex = swiper.realIndex;
+      const activeSlide = swiper.slides[activeSlideIndex];
+      const image = activeSlide.querySelector("img");
+      const imageUrl = image.src;
+
+      console.log(`Added image to wardrobe: ${imageUrl}`);
+      alert("Style added to digital wardrobe!");
+    
+      window.location.href = "wardrobe.html";
+    }
+
+    function toggleLike() {
+            const likeButton = document.getElementById('likebutton');
+            const likePath = document.getElementById('likepath');
+
+            if (likePath.classList.contains('liked')) {
+                likePath.classList.remove('liked');
+                likePath.setAttribute('fill', 'none');
+            } else {
+                likePath.classList.add('liked');
+                likePath.setAttribute('fill', '#E72744');
+                alert('You liked this photo');
+            }
+        }
+    // Function to swipe to next slide
+    function nextSlide() {
+      swiper.slideNext();
+    }
+    </script>
+</body>
+
+</html>
