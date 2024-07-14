@@ -184,8 +184,44 @@
             </div>
         </div>
     </div>
-
+    <div class="book">
+        <h1>JAPANNESE FASHION MAGAZINE</h1>
+        <div id="pages" class="pages">
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Black-Mask-1-683x1024.webp');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-2-1024x600.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-1.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Black-Mask.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Coatigans-683x1024.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Slouchy-Outerwear-683x1024.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Plaid-on-Plaid-683x1024.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Wide-leg-pants.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Bubblegum-Pink.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Cropped-Jacket-683x1024.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-White-on-white-683x1024.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Muslin.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/07/Japanese-Fashion-Trends-Jogger-683x1024.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2023/06/Why-Japanese-Always-Drink-Cold-Water-680x400.jpeg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2021/01/Japanese-Vending-Machines-Facts-680x400.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2023/09/Best-Shonen-Mangas-Recommendations-680x400.jpg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2023/08/Japanese-Lanterns-680x400.jpeg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2023/07/Totoro-Inspiration-Locations-680x400.jpeg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2023/08/Chewing-gum-in-Japan-680x400.jpeg');"></div>
+            <div class="page" style="background-image: url('https://sugoii-japan.com/wp-content/uploads/2023/08/Tokyo-Aquariums-680x400.jpeg');"></div>
+            <div class="page"><p>Welcome to Japanese fashion</p></div>
+         </div>
+    </div>
     <script>
+        const pages = document.querySelectorAll(".page");
+        pages.forEach((page, index) => {
+            page.addEventListener("click", () => {
+                if (page.classList.contains("flipped")) {
+                    page.classList.remove("flipped");
+                } else {
+                    page.classList.add("flipped");
+                }
+            });
+        });
+    
         function toggleSidebar() {
             const sidebar = document.querySelector('.left');
             sidebar.classList.toggle('open');

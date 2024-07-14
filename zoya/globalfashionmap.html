@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Fashion Map</title>
+  <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.umd.min.js"></script>
+  <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f4f4f4;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #ec36dd;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+
+    #map {
+      width: 100%;
+      height: 60vh;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .map-popup {
+      max-width: 200px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .map-popup h3 {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .map-popup p {
+      font-size: 14px;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    .content {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 1rem;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    .drama-section {
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: left;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .drama-section h2 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .drama-section p {
+      font-size: 1.2rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .drama-section:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 10px 0 0 10px;
+      z-index: 1000;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar a:hover {
+      color: #ff9800;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .content h2 {
+        font-size: 1.5rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+      }
+
+      .drama-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .drama-section p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Global Fashion Map</h1>
+    <p>Explore the fashion trends across major cities around the world</p>
+  </header>
+
+
+  <!-- <div class="content">
+    <h2>Discover Fashion Trends</h2>
+    <p>Explore the diverse and dynamic world of fashion with our interactive global map. Click on the markers to learn more about the latest trends and styles in major fashion capitals.</p>
+  </div> -->
+
+  <div class="drama-section">
+    <h2>Global Style Drama</h2>
+    <p>Stay tuned for the latest updates on global fashion drama. From high-end runway shows to street fashion battles, we'll cover the most exciting stories and controversies in the fashion world. Don't miss out on the drama that shapes the styles we love!</p>
+  </div>
+ 
+  <div id="map"></div>
+  <!-- <footer>
+    <p>&copy; 2024 Global Fashion Map. All rights reserved.</p>
+  </footer> -->
+
+  <div class="sidebar">
+    <a href="./new_york.html">New York</a>
+    <a href="./russia.html">Russia</a>
+    <a href="./paris.html">Paris</a>
+    <a href="./">Korea</a>
+    <a href="./japan.html">Japan</a>
+  </div>
+
+  <script>
+    maptilersdk.config.apiKey = 'Wars20G8uapWIPRAZqLg';
+    const map = new maptilersdk.Map({
+      container: 'map',
+      style: "streets-v2",
+      center: [0, 0],
+      zoom: 3
+    });
+
+    const locations = [
+      { name: 'New York', coordinates: [-74.006, 40.7128], link: 'new_york.html' },
+      { name: 'Russia', coordinates: [37.6173, 55.7558], link: 'russia.html' },
+      { name: 'Paris', coordinates: [2.3522, 48.8566], link: 'paris.html' },
+      { name: 'Korea', coordinates: [126.978, 37.5665], link: 'korea.html' },
+      { name: 'Japan', coordinates: [139.6917, 35.6895], link: 'japan.html' }
+    ];
+
+    locations.forEach(location => {
+      const marker = new maptilersdk.Marker()
+        .setLngLat(location.coordinates)
+        .setPopup(new maptilersdk.Popup().setHTML(`
+          <div class="map-popup">
+            <h3>${location.name}</h3>
+            <p>Explore fashion in ${location.name}</p>
+          </div>
+        `))
+        .addTo(map);
+
+      marker.getElement().addEventListener('click', () => {
+        window.location.href = location.link;
+      });
+    });
+
+    const bounds = new maptilersdk.LngLatBounds();
+    locations.forEach(location => {
+      bounds.extend(location.coordinates);
+    });
+    map.fitBounds(bounds, { padding: 50 });
+  </script>
+</body>
+
+</html>

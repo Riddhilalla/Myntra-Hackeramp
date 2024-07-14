@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauty Products & Dupes - Myntra</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #e760e0;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .filter-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-input {
+      max-width: 300px;
+      padding: 10px;
+      border: 1px solid #e760e0;
+      border-radius: 8px;
+    }
+
+    .responsive-table {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .table-header {
+      background-color: #e760e0;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-radius: 8px 8px 0 0;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .table-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .table-row:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .col {
+      flex-basis: 45%; /* Adjusted for better alignment */
+      padding: 5px;
+    }
+
+    .container-perfume {
+      max-width: 1200px;
+      margin-top: 40px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Perfume Collection</h2>
+  <div class="row justify-content-center" id="perfumeCardContainer">
+    <!-- Start of perfume card generation -->
+    <!-- Perfume cards will be dynamically generated here -->
+  </div>
+</div>
+
+<div class="container">
+  <h2>Discover Makeup Dupes on Myntra</h2>
+  <p>Explore affordable alternatives to high-end makeup products with similar quality and performance.</p>
+  <div class="filter-container">
+    <input type="text" id="filterInput" class="filter-input" placeholder="Filter makeup dupes...">
+  </div>
+  <ul id="makeupTable" class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">High End Makeup</div>
+      <div class="col col-2">Makeup Dupe</div>
+    </li>
+    <!-- Dynamically populated rows will be added here -->
+  </ul>
+</div>
+
+<!-- Bootstrap JS and dependencies (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="./makeup.js"></script>
+<script src="./perfume.js"></script>
+<script>
+  // Populate Perfume Collection Cards
+  document.addEventListener('DOMContentLoaded', function () {
+    const perfumeCardContainer = document.getElementById('perfumeCardContainer');
+
+    perfumeData.forEach(perfume => {
+      const card = document.createElement('div');
+      card.classList.add('col-lg-4', 'col-md-6', 'mb-4');
+
+      card.innerHTML = `
+        <div class="card">
+          <img src="${perfume.imageURL}" class="card-img-top" alt="Perfume Image">
+          <div class="card-body">
+            <h5 class="card-title">${perfume.text}</h5>
+          </div>
+        </div>
+      `;
+
+      perfumeCardContainer.appendChild(card);
+    });
+
+    // Populate Makeup Dupes Table
+    const tableData = makeupData["Table 1"];
+    const makeupTable = document.getElementById('makeupTable');
+
+    tableData.forEach(item => {
+      const row = document.createElement('li');
+      row.classList.add('table-row');
+      
+      row.innerHTML = `
+        <div class="col col-1">${item["High End Makeup"]}</div>
+        <div class="col col-2">${item["Drugstore Makeup Dupe"]}</div>
+      `;
+      
+      makeupTable.appendChild(row);
+    });
+
+    // Filter Functionality
+    const filterInput = document.getElementById('filterInput');
+    filterInput.addEventListener('input', function() {
+      const filterValue = this.value.toLowerCase();
+      const rows = makeupTable.querySelectorAll('.table-row');
+      
+      rows.forEach(row => {
+        const highEndMakeup = row.querySelector('.col-1').textContent.toLowerCase();
+        const dupe = row.querySelector('.col-2').textContent.toLowerCase();
+
+        if (highEndMakeup.includes(filterValue) || dupe.includes(filterValue)) {
+          row.style.display = 'flex';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

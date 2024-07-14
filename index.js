@@ -80,11 +80,17 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 
-// Handle products route
+// // Handle products route
+// app.get("/products", async (req, res) => {
+//     const products = await Product.find({});
+//     res.render("products/index", { products });
+// });
 app.get("/products", async (req, res) => {
     const products = await Product.find({});
-    res.render("products/index", { products });
+    console.log("req.user:", req.user);  // Debugging line
+    res.render("products/index", { products, curruser: req.user });
 });
+
 
 app.post("/carts/create", async (req, res) => {
     try {
