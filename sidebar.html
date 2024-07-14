@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Assistant", sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+        }
+
+        .left {
+            width: 20%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #29303E;
+            position: fixed;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .inner {
+            background-color: white;
+            border-radius: 5px;
+            width: 80%;
+            height: 100%;
+            z-index: 99999;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .TOP {
+            margin-top: -13px;
+        }
+
+        .profile,
+        .wardrobe {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            font-size: 17px;
+            color: #29303E;
+        }
+
+        .category {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #29303E;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .types ul {
+            margin-top: 1px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .quiz button {
+            margin-bottom: 78px;
+            border: 2px solid #29303E;
+            color: #29303E;
+            padding: 15px 22px;
+            border-radius: 5px;
+            background-color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .toggle-button {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: #29303E;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100000;
+        }
+
+        @media only screen and (max-width: 1100px) {
+            .inner {
+                width: 75%;
+            }
+        }
+
+        
+
+        @media only screen and (max-width: 800px) {
+            .left {
+                width: 250px;
+                transform: translateX(-100%);
+            }
+
+            .left.open {
+                transform: translateX(0);
+            }
+
+            .inner {
+                width: 100%;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+           .TOP{
+            margin-top: 60px;
+           }
+
+            
+
+            .toggle-button {
+                display: block;
+                border-radius: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="toggle-button" onclick="toggleSidebar()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" color="#ffffff" fill="none">
+        <path d="M12.5 18C12.5 18 18.5 13.5811 18.5 12C18.5 10.4188 12.5 6 12.5 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M5.50005 18C5.50005 18 11.5 13.5811 11.5 12C11.5 10.4188 5.5 6 5.5 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg></button>
+    <div class="container">
+        <div class="left">
+            <div class="inner">
+                <div class="TOP">
+                    <div class="profile">
+                        <svg width="30" height="30" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.3227 27.0927C10.5804 28.0931 6.01234 30.1358 8.79462 32.6917C10.1538 33.9403 11.6675 34.8333 13.5706 34.8333H24.4301C26.3332 34.8333 27.8469 33.9403 29.206 32.6917C31.9883 30.1358 27.4202 28.0931 25.6779 27.0927C21.5924 24.7469 16.4083 24.7469 12.3227 27.0927Z" stroke="#29303E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24.5413 15.8333C24.5413 18.8939 22.0603 21.375 18.9997 21.375C15.9391 21.375 13.458 18.8939 13.458 15.8333C13.458 12.7727 15.9391 10.2917 18.9997 10.2917C22.0603 10.2917 24.5413 12.7727 24.5413 15.8333Z" stroke="#29303E" stroke-width="3" />
+                            <path d="M4.51916 25.3333C3.64992 23.3801 3.16699 21.2182 3.16699 18.9439C3.16699 10.2304 10.2558 3.16666 19.0003 3.16666C27.7448 3.16666 34.8337 10.2304 34.8337 18.9439C34.8337 21.2182 34.3507 23.3801 33.4815 25.3333" stroke="#29303E" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                        <h3>MY PROFILE</h3>
+                    </div>
+                    <div class="wardrobe">
+                        <svg width="30" height="30" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.875 9.33977C4.875 6.46903 4.875 5.03365 5.70791 4.14183C6.54084 3.25 7.88138 3.25 10.5625 3.25C13.2436 3.25 14.5842 3.25 15.4171 4.14183C16.25 5.03365 16.25 6.46903 16.25 9.33977V12.2551C16.25 14.4099 16.25 15.4873 15.7054 15.9444C15.5548 16.0709 15.3818 16.1635 15.1969 16.2167C14.5286 16.4088 13.7236 15.7624 12.1136 14.4695C11.4439 13.9317 11.1091 13.6628 10.7285 13.6149C10.6182 13.601 10.5068 13.601 10.3965 13.6149C10.0159 13.6628 9.68108 13.9317 9.01136 14.4695C7.4014 15.7624 6.59641 16.4088 5.92811 16.2167C5.74321 16.1635 5.57022 16.0709 5.41955 15.9444C4.875 15.4873 4.875 14.4099 4.875 12.2551V9.33977Z" stroke="#29303E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M21.125 3.25H21.5681C26.8676 3.25 29.5173 3.25 31.3575 4.54649C31.8848 4.91795 32.3528 5.35847 32.7475 5.8547C34.125 7.58659 34.125 10.0805 34.125 15.0682V19.2046C34.125 24.0198 34.125 26.4272 33.363 28.3501C32.138 31.4415 29.5472 33.8798 26.2626 35.0327C24.2197 35.75 21.6616 35.75 16.5454 35.75C13.622 35.75 12.1602 35.75 10.9928 35.3402C9.11591 34.6814 7.63547 33.288 6.93544 31.5216C6.5 30.4228 6.5 29.047 6.5 26.2954V21.125" stroke="#29303E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M34.125 19.5C34.125 22.4915 31.6999 24.9166 28.7084 24.9166C27.6265 24.9166 26.351 24.7271 25.299 25.0089C24.3644 25.2593 23.6343 25.9894 23.3839 26.924C23.1021 27.976 23.2916 29.2515 23.2916 30.3334C23.2916 33.3249 20.8665 35.75 17.875 35.75" stroke="#29303E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <h3>DIGITAL WARDROBE</h3>
+                    </div>
+                    <div class="category">
+                        <h2>CATEGORIES</h2>
+                        <div class="types">
+                            <ul>
+                                <li>CROSSBORDERS</li>
+                                <li>DAZZLING DUPES</li>
+                                <li>RENTAL COUTURE</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz">
+                    <button>View Exciting Challenges</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.left');
+            sidebar.classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
