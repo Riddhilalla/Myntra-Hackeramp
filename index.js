@@ -152,6 +152,7 @@ app.post('/cart/:cartCode/add', async (req, res, next) => {
 
         console.log('Received data:', { productId, name, photo, price, quantity });
 
+        // Validate required fields
         if (!productId || !name || !photo || !price || !quantity) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
@@ -159,7 +160,7 @@ app.post('/cart/:cartCode/add', async (req, res, next) => {
         // Find the cart based on cartCode
         const cart = await Cart.findOne({ code: cartCode });
 
-        // If cart not found, throw an error
+        // If cart not found, return 404
         if (!cart) {
             return res.status(404).json({ error: 'Cart not found' });
         }
