@@ -38,3 +38,22 @@ Seamlessly connect and share your fashion finds and looks across popular social 
 **Mapping:** MapLibre
 
 **Computer Vision:** OpenCV
+
+
+**IMAGES**
+
+**RENTAL COTURE**
+
+![image](https://github.com/user-attachments/assets/13920f22-cef0-49a8-ac66-5fc1133f90b7)
+
+**Dazzling Dupes**
+![image](https://github.com/user-attachments/assets/a7dfaaac-6784-47c9-8196-b258642fff11)
+
+**Style Squad**
+![image](https://github.com/user-attachments/assets/e6782775-8927-435b-9984-a398c8311c37)
+
+**Style Battles**
+![image](https://github.com/user-attachments/assets/77192c5f-23d7-4632-b841-b0a9f69b1231)
+
+**Tinder-like swipable shopping**
+![image](https://github.com/user-attachments/assets/726b7971-a9ee-4009-b226-15a47fd041bb)
